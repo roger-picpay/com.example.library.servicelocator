@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':servicelocator'
 rootProject.name='LibrarySample'
