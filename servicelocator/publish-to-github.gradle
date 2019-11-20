@@ -1,0 +1,31 @@
+apply plugin: 'maven-publish'
+//apply plugin: 'signing'
+
+group = 'com.example'
+version = '1.0.3'
+
+
+def getArtificatId = { ->
+    "servicelocator"
+}
+
+publishing {
+    publications {
+        bar(MavenPublication) {
+            artifactId = getArtificatId()
+            artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
+
+        }
+    }
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/roger-picpay/com.example.library.servicelocator")
+
+            credentials {
+                username = "roger-picpay"
+                password = "5fd4ebe3d85f2cd579b543fe51d3933b4f1ebd7e"
+            }
+        }
+    }
+}
